@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="./main.css" />
+  <title>Levél a <>nak!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="https://irjnekik.hu/favicon.ico" type="image/x-icon" />
+  <!-- third-generation iPad with high-resolution Retina display: -->
+  <link rel="apple-touch-icon-precomposed""
+  href=" https://irjnekik.hu/apple-touch-icon.png" />
+  <!-- facebook -->
+  <meta property="og:title" content="Írj emailt a <>nak>!" />
+  <meta property="og:description" content="Leírás" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://irjnekik.hu/" />
+  <meta property="og:image" content="https://irjnekik.hu/card_image.png" />
+  <!-- twitter -->
+  <meta name="twitter:title" content="Írj emailt a <>nak>!">
+  <meta name="twitter:description" content="Leírás">
+  <meta name="twitter:image" content="https://irjnekik.hu/card_image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <script src="https://kit.fontawesome.com/23676e7fa4.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/themes/light.css" />
+  <script type="module"
+    src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/shoelace-autoloader.js"></script>
+  <link rel="stylesheet" media="(prefers-color-scheme:light)"
+    href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/themes/light.css" />
+  <link rel="stylesheet" media="(prefers-color-scheme:dark)"
+    href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/themes/dark.css"
+    onload="document.documentElement.classList.add('sl-theme-dark');" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
+  <script type="module">
+    import { registerIconLibrary } from '/dist/utilities/icon-library.js';
+
+    registerIconLibrary('fa', {
+      resolver: name => {
+        const filename = name.replace(/^fa[rbs]-/, '');
+        let folder = 'regular';
+        if (name.substring(0, 4) === 'fas-') folder = 'solid';
+        if (name.substring(0, 4) === 'fab-') folder = 'brands';
+        return `https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/svgs/${folder}/${filename}.svg`;
+      },
+      mutator: svg => svg.setAttribute('fill', 'currentColor')
+    });
+  </script>
+  <script src="https://unpkg.com/@mahozad/theme-switch"></script>
+</head>
+
+<body class="dark:bg-black">
+  <div id="background" class="dark:opacity-15"></div>
+  <header id="topnav" class="bg-white dark:bg-gray-900">
+    <nav>
+      <h2>Írjnekik</h2>
+      <div class="end flex gap-2">
+        <theme-switch></theme-switch>
+        <a href="https://github.com/something">
+          <i class="fa-brands fa-github"></i>
+        </a>
+      </div>
+    </nav>
+  </header>
+  <main id="content" class="prose dark:prose-invert bg-white/95 dark:bg-gray-900/95">
+    <h1>Írj emailt a valakinek!</h1>
+    <div class="desc">
+      <h2>Alcím ide!</h2>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+      magna aliqua. <br />
+      Egy kattintással el tudod küldeni az alábbi levelet az általad kiválasztott VALAKINEK, de ha nem
+      tudod HOVA, vagy bármi probléma merülne fel a gombbal, kézzel is ki tudod másolni a levél
+      tartalmát. Ha szeretnéd, írd alá a levelet saját neveddel!
+      <br />Az alábbi gomb a kiválasztott tankerületen kívül a <>nak is elküld minden emailt. (Note: ez legyen
+        opcionalis)
+        <br /><i>Az emailban a szervezői cím is meg van jelölve, hogy tudjuk hányan küldtek
+          emailt, de ha nem szeretnéd, akkor távolítsd el a BCC-ből. Ha elküldted, de szeretnéd hogy töröljük az
+          emailt amit megkaptunk, írj a <span>valamilyen@gmail.com</span> címre!</i> (Ez is legyen opcionalis)
+    </div>
+
+    <div style="font-weight: 600; font-size: 35px; margin-bottom: 1.5rem">
+      VAGY
+    </div>
+
+    <sl-tab-group style="width:100%">
+      <sl-tab slot="nav" panel="general">Autómata küldés</sl-tab>
+      <sl-tab slot="nav" panel="custom">Saját email írása</sl-tab>
+
+      <sl-tab-panel name="general">
+        <div class="flex flex-col gap-1">
+          <form id="tanker_form">
+            <sl-select id="tanker"
+              placeholder="Válaszd ki a kari hallgatói képviseletedet vagy a doktoranduszképviseletet">
+              <sl-option value="a">Építőmérnöki Kar</sl-option>
+              <sl-option value="b">Gépészmérnöki Kar</sl-option>
+              <sl-option value="c">Építészmérnöki Kar</sl-option>
+              <sl-option value="d">Vegyészmérnöki és Biomérnöki Kar</sl-option>
+              <sl-option value="e">Villamosmérnöki és Informatikai Kar</sl-option>
+              <sl-option value="f">Közlekedésmérnöki és Járműmérnöki Kar</sl-option>
+              <sl-option value="g">Természettudományi Kar</sl-option>
+              <sl-option value="h">Gazdaság- és Társadalomtudományi Kar</sl-option>
+              <sl-option value="i">Doktorandusz</sl-option>
+            </sl-select>
+          </form>
+          <div>
+            <sl-copy-button class="copybutton-textarea" from="mail_default_content"></sl-copy-button>
+            <textarea id="mail_default_content">Tisztelt ⟨kari⟩ Hallgatói Képviselet, Kedves Hallgatótársaim!
+
+Június 10-én lesz az Egyetemünkön rektorválasztás, ahol a Szenátus részeként az EHK delegáltjai is szavazni fognak az Egyetem jövőjéről.
+Mint BME-s ⟨hallgató/doktorandusz⟩, fontosnak tartom, hogy a BME-n legyen a legjobb tanulni, kutatni, tanítani. Különösen fontosnak tartom az Egyetem autonómiáját, és gazdag európai kapcsolatrendszerünk ápolását, de a jelenlegi helyzetben veszélyeztetettnek érzem ezeket. Határozottan ellenzem azt is, hogy az Egyetemen költségvetési hiány miatt tömeges létszámleépítésekre kerüljön sor. Úgy gondolom, hogy sem az autonómiánk, sem a kapcsolataink megőrzésére nem jelent garanciát a (mindkét rektorjelölt pályázatában szereplő) alapítványi (KEKVA) működési modell.
+
+Ha tényleg minket, hallgatókat képviseltek, akkor Június 10-én szavazzatok a fentiek figyelembe vételével, a hallgatóság érdeke szerint. Nekünk nem közömbös ez az ügy, Nektek se legyen az!
+
+Köszönettel,
+⟨xyz⟩</textarea>
+          </div>
+          <div class="flex flex-col w-fit">
+            <sl-checkbox help-text="Leírás">EHKnak is</sl-checkbox>
+            <sl-checkbox help-text="Adatvédelmi link meg szöveg">Követhetjük-e</sl-checkbox>
+          </div>
+          <a id="send" href="mailto:ugyfelszolgalat@kk.gov.hu">
+            <sl-button variant="primary">Küldés</sl-button>
+          </a>
+        </div>
+      </sl-tab-panel>
+      <sl-tab-panel name="custom">
+        <div class="mail m-auto prose dark:prose-invert bg-white dark:bg-gray-950">
+          <div class="mail_head">
+            <div>
+              <div>Címzett:</div>
+              <div style="margin-left: 1em">
+                <span id="tanker_address">cimzett@cimzett.hu</span>
+              </div>
+            </div>
+            <div id="CC">
+              <div>CC:</div>
+              <div style="margin-left: 1em">
+                cimzett@cimzett.hu
+              </div>
+            </div>
+            <div>
+              <div>BCC:</div>
+              <div style="margin-left: 1em">
+                valamilyen@gmail.com
+              </div>
+            </div>
+            <div>
+              <div>Tárgy:</div>
+              <div style="margin-left: 1em">
+                Tárgy
+              </div>
+            </div>
+          </div>
+          <sl-divider style="border-top:solid var(--width) var(--color); margin:var(--spacing) 0;"></sl-divider>
+          <sl-copy-button class="copybutton-bodytext" from="bodytext"></sl-copy-button>
+          <div id="bodytext" style="padding-top: 0.5em">
+            Tisztelt ⟨kari⟩ Hallgatói Képviselet, Kedves Hallgatótársaim!
+            <br />
+            <p>
+              Június 10-én lesz az Egyetemünkön rektorválasztás, ahol a Szenátus részeként az EHK delegáltjai is
+              szavazni fognak az Egyetem jövőjéről.
+              Mint BME-s ⟨hallgató/doktorandusz⟩, fontosnak tartom, hogy a BME-n legyen a legjobb tanulni, kutatni,
+              tanítani. Különösen fontosnak tartom az Egyetem autonómiáját, és gazdag európai kapcsolatrendszerünk
+              ápolását, de a jelenlegi helyzetben veszélyeztetettnek érzem ezeket. Határozottan ellenzem azt is, hogy az
+              Egyetemen költségvetési hiány miatt tömeges létszámleépítésekre kerüljön sor. Úgy gondolom, hogy sem az
+              autonómiánk, sem a kapcsolataink megőrzésére nem jelent garanciát a (mindkét rektorjelölt pályázatában
+              szereplő) alapítványi (KEKVA) működési modell.
+            </p>
+            <p>
+              Ha tényleg minket, hallgatókat képviseltek, akkor Június 10-én szavazzatok a fentiek figyelembe vételével,
+              a hallgatóság érdeke szerint. Nekünk nem közömbös ez az ügy, Nektek se legyen az!
+            </p>
+            <p>
+              <br />Köszönettel,
+              <br />⟨xyz⟩
+            </p>
+          </div>
+        </div>
+      </sl-tab-panel>
+    </sl-tab-group>
+  </main>
+  <footer class="bg-white/95 dark:bg-gray-900/95">
+    <div>A szervezők</div>
+    <div><a href="https://www.facebook.com/">Facebook oldal</a></div>
+    <!-- The favicon was generated using the following graphics from Twitter Twemoji:
+
+    - Graphics Title: 1f58b.svg
+    - Graphics Author: Copyright 2020 Twitter, Inc and other contributors (https://github.com/twitter/twemoji)
+    - Graphics Source: https://github.com/twitter/twemoji/blob/master/assets/svg/1f58b.svg
+    - Graphics License: CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/) -->
+  </footer>
+  <script src="./main.js"></script>
+</body>
+
+</html>
