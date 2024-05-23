@@ -14,7 +14,7 @@ send.addEventListener("click", (e) => {
     "mailto:" +
     email +
     "?subject=Tárgy" +
-    "&cc=cimzett@cimzett" +
+    "&cc=cimzett@cimzett.com" +
     "&bcc=valamilyen@gmail.com" +
     "&body=" +
     body;
@@ -22,7 +22,7 @@ send.addEventListener("click", (e) => {
 
 select.addEventListener("change", (event) => {
   address.textContent = select.value;
-  if (select.value !== "cimzett@cimzett") {
+  if (select.value !== "cimzett@cimzett.com") {
     cc.style.display = "flex";
   } else {
     cc.style.display = "none";
