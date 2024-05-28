@@ -50,26 +50,40 @@ h1 {
 }
 
 #background {
-  background-image: url('background.jpg');
-  height: 100%;
   position: fixed;
-  width: 100%;
   z-index: -1;
-  background-position: 0 -225px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+#background::after, #background::before {
+  content: '';
+  background-image: url('background.jpg');
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-size: cover;
-  top: 40px
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+#background::after {
+  backdrop-filter: blur(2px);
+  background: transparent;
 }
 
 #content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 1300px;
+  max-width: min(1300px, 100%);
   margin-top: calc(40px + 3rem);
-  padding: 3rem;
+  padding: 3rem 2rem;
   box-shadow: var(--sl-shadow-small);
-  border-radius: 5px;
-  border-top: 5px solid;
+  border-radius: 2px;
 }
 
 .desc {
