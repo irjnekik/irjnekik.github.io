@@ -4,22 +4,22 @@
 <head>
   <meta charset="utf-8" />
   <link rel="stylesheet" href="./main.css" />
-  <title>Levél a <>nak!</title>
+  <title>Írj nekik!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="icon" href="https://irjnekik.hu/favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="./favicon.ico" type="image/x-icon" />
   <!-- third-generation iPad with high-resolution Retina display: -->
   <link rel="apple-touch-icon-precomposed""
-  href=" https://irjnekik.hu/apple-touch-icon.png" />
+  href=" ./apple-touch-icon.png" />
   <!-- facebook -->
   <meta property="og:title" content="Írj emailt a <>nak>!" />
   <meta property="og:description" content="Leírás" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://irjnekik.hu/" />
-  <meta property="og:image" content="https://irjnekik.hu/card_image.png" />
+  <meta property="og:url" content="https://irjnekik.github.io/" />
+  <meta property="og:image" content="./card_image.png" />
   <!-- twitter -->
   <meta name="twitter:title" content="Írj emailt a <>nak>!">
   <meta name="twitter:description" content="Leírás">
-  <meta name="twitter:image" content="https://irjnekik.hu/card_image.png">
+  <meta name="twitter:image" content="./card_image.png">
   <meta name="twitter:card" content="summary_large_image">
   <script src="https://kit.fontawesome.com/23676e7fa4.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/themes/light.css" />
@@ -30,39 +30,27 @@
   <link rel="stylesheet" media="(prefers-color-scheme:dark)"
     href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/themes/dark.css"
     onload="document.documentElement.classList.add('sl-theme-dark');" />
-  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
-  <script type="module">
-    import { registerIconLibrary } from '/dist/utilities/icon-library.js';
-
-    registerIconLibrary('fa', {
-      resolver: name => {
-        const filename = name.replace(/^fa[rbs]-/, '');
-        let folder = 'regular';
-        if (name.substring(0, 4) === 'fas-') folder = 'solid';
-        if (name.substring(0, 4) === 'fab-') folder = 'brands';
-        return `https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/svgs/${folder}/${filename}.svg`;
-      },
-      mutator: svg => svg.setAttribute('fill', 'currentColor')
-    });
-  </script>
-  <script src="https://unpkg.com/@mahozad/theme-switch"></script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,container-queries"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body class="dark:bg-black">
   <div id="background" class="dark:opacity-15"></div>
   <header id="topnav" class="bg-white dark:bg-gray-900">
     <nav>
-      <h2>Írjnekik</h2>
+      <h2>Írj nekik</h2>
       <div class="end flex gap-2">
-        <theme-switch></theme-switch>
-        <a href="https://github.com/domino-1/irjnekik">
-          <i class="fa-brands fa-github"></i>
+        <a href="https://facebook.com">
+          <i class="fa-brands fa-facebook"></i>
+        </a>
+        <a href="https://instagram.com">
+          <i class="fa-brands fa-instagram"></i>
         </a>
       </div>
     </nav>
   </header>
   <main id="content" class="prose dark:prose-invert bg-white/95 dark:bg-gray-900/95">
-    <h1>Írj emailt a valakinek!</h1>
+    <h1>Írj emailt a HK-knak!</h1>
     <div class="desc">
       <h2>Alcím ide!</h2>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
@@ -77,33 +65,45 @@
           emailt amit megkaptunk, írj a <span>valamilyen@gmail.com</span> címre!</i> (Ez is legyen opcionalis)
     </div>
 
-    <div style="font-weight: 600; font-size: 35px; margin-bottom: 1.5rem">
-      VAGY
+    <div style="margin-bottom: 1.5rem; min-width: 50%;">
+      <form id="hk_form">
+        <sl-select id="hk_select" clearable
+          placeholder="Válaszd ki a kari hallgatói képviseletedet vagy a doktoranduszképviseletet">
+          <sl-option value="kepviselet@emkhk.hu">Építőmérnöki Kar</sl-option>
+          <sl-option value="info@ghk.bme.hu">Gépészmérnöki Kar</sl-option>
+          <sl-option value="info@epiteszhk.hu">Építészmérnöki Kar</sl-option>
+          <sl-option value="vegyeszhk@vegyeszhk.hu">Vegyészmérnöki és Biomérnöki Kar</sl-option>
+          <sl-option value="hk@vik.hk">Villamosmérnöki és Informatikai Kar</sl-option>
+          <sl-option value="info@kozlekkar.hu">Közlekedésmérnöki és Járműmérnöki Kar</sl-option>
+          <sl-option value="info@ttkhk.hu">Természettudományi Kar</sl-option>
+          <sl-option value="altalanos@gtkhk.bme.hu">Gazdaság- és Társadalomtudományi Kar</sl-option>
+          <sl-option value="info@bmeedk.hu">Doktorandusz</sl-option>
+        </sl-select>
+      </form>
+      <sl-checkbox checked
+        help-text="A szenátusban az EHK és a EDK delegáltjai szavaznak, az EHK tagjait a kari HK-k választják."
+        id="ehk">Elküldöm az EHK-nak is</sl-checkbox>
     </div>
 
     <sl-tab-group style="width:100%">
-      <sl-tab slot="nav" panel="general">Autómata küldés</sl-tab>
-      <sl-tab slot="nav" panel="custom">Saját email írása</sl-tab>
+      <sl-tab slot="nav" panel="general">E-mail küldő</sl-tab>
+      <sl-tab slot="nav" panel="custom">E-mail másolása</sl-tab>
 
       <sl-tab-panel name="general">
         <div class="flex flex-col gap-1">
-          <form id="tanker_form">
-            <sl-select id="tanker"
-              placeholder="Válaszd ki a kari hallgatói képviseletedet vagy a doktoranduszképviseletet">
-              <sl-option value="cimzett@cimzett.com">Építőmérnöki Kar</sl-option>
-              <sl-option value="cimzett2@cimzett.com">Gépészmérnöki Kar</sl-option>
-              <sl-option value="cimzett3@cimzett.com">Építészmérnöki Kar</sl-option>
-              <sl-option value="cimzett4@cimzett.com">Vegyészmérnöki és Biomérnöki Kar</sl-option>
-              <sl-option value="cimzett5@cimzett.com">Villamosmérnöki és Informatikai Kar</sl-option>
-              <sl-option value="cimzett6@cimzett.com">Közlekedésmérnöki és Járműmérnöki Kar</sl-option>
-              <sl-option value="cimzett7@cimzett.com">Természettudományi Kar</sl-option>
-              <sl-option value="cimzett8@cimzett.com">Gazdaság- és Társadalomtudományi Kar</sl-option>
-              <sl-option value="cimzett9@cimzett.com">Doktorandusz</sl-option>
-            </sl-select>
-          </form>
-          <div>
+          <div class="custom_email">
+            <sl-divider></sl-divider>
+            <div><span class="hint">Címzett</span><span id="cim1"><span class="warning">Válassz
+                  címzettet!</span></span></div>
+            <sl-divider></sl-divider>
+            <div><span class="hint">Másolatot kap</span><span id="cc1">info@bmeehk.hu</span>
+            </div>
+            <sl-divider></sl-divider>
+            <div><span class="hint">Tárgy</span><span class="targy" id="targy">BME Rektorválasztás és
+                Modellváltás</span></div>
+            <sl-divider></sl-divider>
             <sl-copy-button class="copybutton-textarea" from="mail_default_content"></sl-copy-button>
-            <textarea id="mail_default_content">Tisztelt ⟨kari⟩ Hallgatói Képviselet, Kedves Hallgatótársaim!
+            <textarea id="mail_default_content" label="Szöveg:">Tisztelt ⟨kari⟩ Hallgatói Képviselet, Kedves Hallgatótársaim!
 
 Június 10-én lesz az Egyetemünkön rektorválasztás, ahol a Szenátus részeként az EHK delegáltjai is szavazni fognak az Egyetem jövőjéről.
 Mint BME-s ⟨hallgató/doktorandusz⟩, fontosnak tartom, hogy a BME-n legyen a legjobb tanulni, kutatni, tanítani. Különösen fontosnak tartom az Egyetem autonómiáját, és gazdag európai kapcsolatrendszerünk ápolását, de a jelenlegi helyzetben veszélyeztetettnek érzem ezeket. Határozottan ellenzem azt is, hogy az Egyetemen költségvetési hiány miatt tömeges létszámleépítésekre kerüljön sor. Úgy gondolom, hogy sem az autonómiánk, sem a kapcsolataink megőrzésére nem jelent garanciát a (mindkét rektorjelölt pályázatában szereplő) alapítványi (KEKVA) működési modell.
@@ -114,43 +114,26 @@ Köszönettel,
 ⟨xyz⟩</textarea>
           </div>
           <div class="flex flex-col w-fit">
-            <sl-checkbox help-text="Leírás">EHKnak is</sl-checkbox>
-            <sl-checkbox help-text="Adatvédelmi link meg szöveg">Követhetjük-e</sl-checkbox>
+            <sl-checkbox id="counterpermission"
+              help-text="Ha megengeded, akkor számoljuk, hogy hányszor nyomták meg a küldés gombot eddig. Ez nem túl pontos, de valamennyi visszajelzést ad. Semmilyen személyes adatot nem tárolunk.">Számolhatjuk-e</sl-checkbox>
           </div>
-          <a id="send" href="mailto:ugyfelszolgalat@kk.gov.hu">
-            <sl-button variant="primary">Küldés</sl-button>
-          </a>
+          <sl-button id="send" variant="primary" href="mailto:info@bmeehk.hu" style="max-width:100px">Küldés</sl-button>
         </div>
       </sl-tab-panel>
       <sl-tab-panel name="custom">
         <div class="mail m-auto prose dark:prose-invert bg-white dark:bg-gray-950">
-          <div class="mail_head">
-            <div>
-              <div>Címzett:</div>
-              <div style="margin-left: 1em">
-                <span id="tanker_address">cimzett@cimzett.hu</span>
-              </div>
+          <div class="mail_head custom_email">
+            <sl-divider></sl-divider>
+            <div><span class="hint">Címzett</span><span id="cim2"><span class="warning">Válasz
+                  címzettet!</span></span></div>
+            <sl-divider></sl-divider>
+            <div><span class="hint">Másolatot kap</span><span id="cc2">info@bmeehk.hu</span>
             </div>
-            <div id="CC">
-              <div>CC:</div>
-              <div style="margin-left: 1em">
-                cimzett@cimzett.hu
-              </div>
-            </div>
-            <div>
-              <div>BCC:</div>
-              <div style="margin-left: 1em">
-                valamilyen@gmail.com
-              </div>
-            </div>
-            <div>
-              <div>Tárgy:</div>
-              <div style="margin-left: 1em">
-                Tárgy
-              </div>
-            </div>
+            <sl-divider></sl-divider>
+            <div><span class="hint">Tárgy</span><span class="targy">BME Rektorválasztás és
+                Modellváltás</span></div>
+            <sl-divider></sl-divider>
           </div>
-          <sl-divider style="border-top:solid var(--width) var(--color); margin:var(--spacing) 0;"></sl-divider>
           <sl-copy-button class="copybutton-bodytext" from="bodytext"></sl-copy-button>
           <div id="bodytext" style="padding-top: 0.5em">
             Tisztelt ⟨kari⟩ Hallgatói Képviselet, Kedves Hallgatótársaim!
@@ -179,8 +162,16 @@ Köszönettel,
     </sl-tab-group>
   </main>
   <footer class="bg-white/95 dark:bg-gray-900/95">
-    <div>A szervezők</div>
-    <div><a href="https://www.facebook.com/">Facebook oldal</a></div>
+    <div>
+      <div>
+        <span>Háttérkép: <a href="https://commons.wikimedia.org/wiki/File:Budapest,_BME,_3.jpg">Christo</a>, <a
+            href="https://creativecommons.org/licenses/by-sa/4.0">CC
+            BY-SA 4.0</a>, via Wikimedia Commons</span>
+      </div>
+      <div><a href="https://github.com/domino-1/irjnekik">
+          <i class="fa-brands fa-github"></i>
+        </a></div>
+    </div>
     <!-- The favicon was generated using the following graphics from Twitter Twemoji:
 
     - Graphics Title: 1f58b.svg
@@ -188,7 +179,7 @@ Köszönettel,
     - Graphics Source: https://github.com/twitter/twemoji/blob/master/assets/svg/1f58b.svg
     - Graphics License: CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/) -->
   </footer>
-  <script src="./main.js"></script>
+  <script src="./main.js" type="module"></script>
 </body>
 
 </html>

@@ -15,6 +15,15 @@
   }
 }
 
+sl-divider {
+  border-top: solid var(--width) var(--color);
+  margin: var(--spacing) 0;
+}
+
+.warning {
+  color: rgba(255,20,20,.8);
+}
+
 header#topnav > nav {
   display: flex;
   flex-direction: row;
@@ -40,6 +49,11 @@ header {
   position: fixed;
   box-shadow: var(--sl-shadow-medium);
   z-index: 10;
+
+  & h2 {
+    font-weight: bold;
+    letter-spacing: .2px;
+  }
 }
 
 h1 {
@@ -113,6 +127,17 @@ input[type="text"] {
   display: none;
 }
 
+.custom_email sl-divider {
+  --spacing: 5px;
+}
+
+.custom_email .hint {
+  color: gray;
+  min-width: 4rem;
+  display: inline-block;
+  margin-right: 8px;
+}
+
 .mail {
   margin: 0 5em;
   border-radius: 5px;
@@ -126,7 +151,6 @@ input[type="text"] {
 }
 
 .mail_head > div {
-  font-size: 18px; 
   display: flex;
 }
 
@@ -135,16 +159,25 @@ input[type="text"] {
   width: 3em;
 }
 
-#CC {
+.cc {
   display:none;
 }
 
 footer {
-  padding: 5px 10px;
+  padding: 1rem 2rem;
   margin-top: 3em;
+  width: 100%;
+  color: var(--sl-color-neutral-600);
+}
+
+footer > div {
   display: flex;
   justify-content: space-between;
   width: 100%;
+}
+
+footer a {
+  text-decoration: underline 1px solid;
 }
 
 .svg {
@@ -198,7 +231,6 @@ footer {
   float: right;
   padding-top: .5rem;
   margin-bottom: -48px;
-  z-index: 10;
   position: relative;
   padding-right: .5rem;
 }
